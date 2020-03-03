@@ -8,12 +8,15 @@ class ExchangeRate extends Model
 {
     protected $guarded = ['id'];
 
-    protected $casts = [
-        'cdata' => 'array'
-    ];
-
     public function getBaseCurrencyAttribute()
     {
         return 'EUR';
+    }
+
+    public function getFormattedRatesAttribute()
+    {
+        return array_filter(array_chunk(explode(' ', str_replace("\"", "", $this->cdata)), 2), function ($item) {
+            return count($item) === 2;
+        });
     }
 }

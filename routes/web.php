@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'ExchangeRateController@index')->name('rates.index');
+Route::get('/{id}', 'ExchangeRateController@show')->name('rates.show');
